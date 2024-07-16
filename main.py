@@ -5,7 +5,6 @@ from car_manager import CarManager
 import random
 from scoreboard import Scoreboard
 
-
 # Create a turtle player that starts
 # at the bottom of the screen and listen for the "Up" keypress
 # to move the turtle north.
@@ -23,7 +22,6 @@ def car_position_generator():
 
 car_manager = CarManager()
 
-
 screen.listen()
 screen.onkey(player.go_up, 'Up')
 
@@ -39,10 +37,8 @@ while game_is_on:
         if car.distance(player) < 20:
             game_is_on = False
 
-
+    if player.is_at_finish_line():
+        player.go_to_start()
+        car_manager.level_up()
 
 screen.exitonclick()
-
-
-
-
