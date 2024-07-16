@@ -2,6 +2,7 @@ import time
 from turtle import Screen
 from player import Player
 from car_manager import CarManager
+from scoreboard import Scoreboard
 import random
 from scoreboard import Scoreboard
 
@@ -13,7 +14,7 @@ screen.setup(width=600, height=600)
 screen.tracer(0)
 
 player = Player()
-
+scoreboard = Scoreboard()
 
 def car_position_generator():
     y_cor = random.randint(-250, 250)
@@ -35,9 +36,11 @@ while game_is_on:
     #Detect collistion with a car
     for car in car_manager.all_cars:
         if car.distance(player) < 20:
+            scoreboard.game_over()
             game_is_on = False
 
     if player.is_at_finish_line():
+        scoreboard.level_point()
         player.go_to_start()
         car_manager.level_up()
 
